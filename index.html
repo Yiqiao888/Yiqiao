@@ -7,35 +7,38 @@
     <p>乔的第一个网站</p>
 </body>
 </html>
+
 <!DOCTYPE html>
 <html>
 <head>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>乔的对话</title>
+    <title>粒子效果</title>
 </head>
 <body>
-    <h1>您可以简单输入信息</h1>
-    <div id="dialog">
-        <p><strong>乔：</strong>你好，我是乔一代机器回复。暂时是个傻子，不会做出精准回复。</p>
-    </div>
-    <input type="text" id="userInput" placeholder="输入你的消息">
-    <button onclick="sendMessage()">发送</button>
+    <div id="particles-js"></div>
 
+    <script src="particles.js"></script>
     <script>
-        function sendMessage() {
-            var userMessage = document.getElementById("userInput").value;
-            var dialog = document.getElementById("dialog");
-            dialog.innerHTML += "<p><strong>你：</strong>" + userMessage + "</p>";
-            document.getElementById("userInput").value = "";
-
-            // 模拟回复
-            setTimeout(function() {
-                var response = "别发了，我不知道回啥";
-                dialog.innerHTML += "<p><strong>梁一乔：</strong>" + response + "</p>";
-            }, 1000); // 模拟1秒后回复
-        }
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                },
+                "color": {
+                    "value": "#ff0000",
+                },
+                "size": {
+                    "value": 3,
+                },
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse",
+                    },
+                },
+            },
+        });
     </script>
 </body>
 </html>
