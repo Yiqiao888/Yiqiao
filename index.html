@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>乔的第一个网站</title>
+    <title>梁一乔的对话</title>
 </head>
 <body>
-    <p>乔的第一个网站</p>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>乔的对话</title>
-</head>
-<body>
-    <h1>乔的对话</h1>
+    <h1>梁一乔的对话</h1>
     <div id="dialog">
-        <p><strong>乔：</strong>你好，我是乔。有什么我可以帮你的吗？</p>
     </div>
-    <input type="text" id="userInput" placeholder="请讲">
+    <input type="text" id="userInput" placeholder="输入你的消息">
     <button onclick="sendMessage()">发送</button>
 
     <script>
+        var isFirstInteraction = true;
+
         function sendMessage() {
             var userMessage = document.getElementById("userInput").value;
             var dialog = document.getElementById("dialog");
-            dialog.innerHTML += "<p><strong>你：</strong>" + userMessage + "</p>";
-            document.getElementById("userInput").value = "";
+            var response;
 
-            // 模拟回复
-            setTimeout(function() {
-                var response = "好，你可以闭嘴了";
-                dialog.innerHTML += "<p><strong>乔：</strong>" + response + "</p>";
-            }, 1000); // 模拟1秒后回复
+            if (isFirstInteraction) {
+                // 首次互动，自我介绍
+                response = "</strong>你好，我是梁一乔。有什么我可以帮你的吗？你可以输入你的名字。";
+                isFirstInteraction = false;
+            } else {
+                // 后续互动
+                response = getResponse(userMessage);
+            }
+
+            dialog.innerHTML += "<p><strong>你：</strong>" + userMessage + "</p>";
+            dialog.innerHTML += "<p><strong>梁一乔：</strong>" + response + "</p>";
+            document.getElementById("userInput").value = "";
+        }
+
+        function getResponse(userMessage) {
+            // 根据用户输入返回相应的回复
+            if (userMessage.includes("你好") || userMessage.includes("陈可馨")) {
+                response = "陈可馨，你好。据我所知，梁一乔称你为无脑美女，你的微信号是QueBB-0930。";
+                response += "如果你想查看我是否知道你的生日，你可以输入 名字+生日 例如:梁一乔生日";
+            } else if (userMessage.includes("陈熙熙")) {
+                response = "陈熙熙，你好，据我所知，梁一乔称你为郑州第一帅t，你的微信号是ChrystieCap7。";
+                response += "如果你想查看我是否知道你的生日，你可以输入 名字+生日 例如:梁一乔生日";
+            } else if (userMessage.includes("崔丞瑜")) {
+                response = "崔丞瑜，你好。据我所知，梁一乔告诉我你们是在高中时相识，你的微信号是ccy111905。";
+                response += "如果你想查看我是否知道你的生日，你可以输入 名字+生日 例如:梁一乔生日";
+            } else if (userMessage.toLowerCase().includes("名字")) {
+                response = "请告诉我你的名字。";
+            } else if (userMessage.toLowerCase().includes("梁一乔")) {
+                response = "哦，你已经知道我的名字了！有什么我可以帮助你的吗？";
+            } else if (userMessage.toLowerCase().includes("陈可馨生日")) {
+                response = "9月30日。";
+            } else if (userMessage.toLowerCase().includes("陈熙熙生日")) {
+                response = "1月4日";
+            } else if (userMessage.toLowerCase().includes("崔丞瑜生日")) {
+                response = "11月19日";
+            } else {
+                response = "抱歉，我不太明白你的问题，可以再详细说明吗？";
+            }
+            return response;
         }
     </script>
 </body>
